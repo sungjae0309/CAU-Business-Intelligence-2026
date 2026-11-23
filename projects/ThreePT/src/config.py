@@ -46,10 +46,10 @@ PAGE_SIZE = 50_000
 # Date the raw data was downloaded. Requests still open on this date are judged against it.
 DATA_COLLECTED_ON = "2026-11-24"
 
-# Complaint types kept in the model dataset (team decision pending: drop "Noise - Residential"?).
+# Complaint types kept in the model dataset.
+# Noise - Residential is left out: most close within an hour and none stay open (decided 2026-11-24).
 MODEL_TYPES = [
     "HEAT/HOT WATER",
-    "Noise - Residential",
     "Street Condition",
 ]
 

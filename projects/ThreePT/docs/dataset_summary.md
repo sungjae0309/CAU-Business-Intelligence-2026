@@ -4,7 +4,7 @@ Built by `src/build_dataset.py` from `data/processed/requests.parquet`.
 
 ## Settings
 
-- Types: HEAT/HOT WATER, Noise - Residential, Street Condition
+- Types: HEAT/HOT WATER, Street Condition
 - Split: train 2023-01-01 to 2024-01-01 (end excluded); valid 2024-01-01 to 2024-07-01 (end excluded); test 2024-07-01 to 2025-01-01 (end excluded)
 - Recent window: 7 days; nearby grid: 100 m
 - Open requests judged at collection date 2026-11-24
@@ -12,35 +12,31 @@ Built by `src/build_dataset.py` from `data/processed/requests.parquet`.
 
 ## Long-delay limit
 
-|                     |   limit hours | rule               |
-|:--------------------|--------------:|:-------------------|
-| Noise - Residential |           3.2 | train quantile 0.9 |
-| Street Condition    |         186.9 | train quantile 0.9 |
-| HEAT/HOT WATER      |          81.5 | train quantile 0.9 |
+|                  |   limit hours | rule               |
+|:-----------------|--------------:|:-------------------|
+| Street Condition |         186.9 | train quantile 0.9 |
+| HEAT/HOT WATER   |          81.5 | train quantile 0.9 |
 
 ## Row filtering
 
 - cleaned rows (all types): 1,307,128
-- after keeping MODEL_TYPES: 1,307,128
+- after keeping MODEL_TYPES: 629,464
 - removed: status Closed but no closed_date: 104
 - removed: closed in the same second as created: 8,902
 - removed: outside the split periods: 0
 - removed: still open but not yet past the limit: 0
-- final rows: 1,298,122
+- final rows: 620,458
 
 ## Rows and long-delay rate
 
-| split   | complaint_type      |   rows |   long_delay | rate   |
-|:--------|:--------------------|-------:|-------------:|:-------|
-| train   | HEAT/HOT WATER      | 229495 |        22950 | 10.0%  |
-| train   | Noise - Residential | 298413 |        29839 | 10.0%  |
-| train   | Street Condition    |  59473 |         5948 | 10.0%  |
-| valid   | HEAT/HOT WATER      | 132961 |         5307 | 4.0%   |
-| valid   | Noise - Residential | 154664 |        13106 | 8.5%   |
-| valid   | Street Condition    |  38055 |         4650 | 12.2%  |
-| test    | HEAT/HOT WATER      | 131759 |        20015 | 15.2%  |
-| test    | Noise - Residential | 224587 |        64674 | 28.8%  |
-| test    | Street Condition    |  28715 |         3575 | 12.4%  |
+| split   | complaint_type   |   rows |   long_delay | rate   |
+|:--------|:-----------------|-------:|-------------:|:-------|
+| train   | HEAT/HOT WATER   | 229495 |        22950 | 10.0%  |
+| train   | Street Condition |  59473 |         5948 | 10.0%  |
+| valid   | HEAT/HOT WATER   | 132961 |         5307 | 4.0%   |
+| valid   | Street Condition |  38055 |         4650 | 12.2%  |
+| test    | HEAT/HOT WATER   | 131759 |        20015 | 15.2%  |
+| test    | Street Condition |  28715 |         3575 | 12.4%  |
 
 ## Columns
 

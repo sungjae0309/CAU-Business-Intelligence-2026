@@ -37,7 +37,8 @@ so the staff in charge can look at them first.
 
 - Source: NYC 311 Service Requests from 2020 to Present (NYC Open Data, `erm2-nwe9`)
 - Period: 2023-01-01 to 2024-12-31
-- Complaint types: `HEAT/HOT WATER`, `Noise - Residential`, `Street Condition`
+- Complaint types collected: `HEAT/HOT WATER`, `Noise - Residential`, `Street Condition`
+- Complaint types used for the model: `HEAT/HOT WATER`, `Street Condition` (noise left out, see status log 2026-11-24)
 - No personal information about the reporter. Data files are not committed (see `.gitignore`).
 - Fallback if data is too large: one department, six months.
 
@@ -106,8 +107,11 @@ so the staff in charge can look at them first.
   Train-period top 10% limits: HEAT/HOT WATER 81.5 h · Noise - Residential 3.2 h · Street Condition 186.9 h.
   Long-delay rate in test (2024 H2): HEAT 15.2% · Noise 28.8% · Street 12.4% (train 10% each).
   Details in `docs/dataset_summary.md`.
+- 2026-11-24: Decision: Noise - Residential left out of the model. Most noise requests close within an hour,
+  none stay open, and its top 10% limit is only 3.2 h, which does not match "left behind" requests.
+  It is also half of all rows and would dominate training and evaluation.
+  Model dataset rebuilt with HEAT/HOT WATER and Street Condition: 620,458 rows.
 
 ## Open questions
 
 - Long-delay label: top 10% per type, or the city's time limit?
-  Noise - Residential limit is 3.2 h, so a "long delay" there is a few hours, not days. Keep or drop noise?
