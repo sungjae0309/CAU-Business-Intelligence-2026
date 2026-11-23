@@ -1,0 +1,15 @@
+# data files are too large for GitHub (share them on Google Drive)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# secrets and OS files
+.env
+.DS_Store
