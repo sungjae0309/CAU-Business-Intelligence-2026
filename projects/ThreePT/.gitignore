@@ -13,3 +13,6 @@ __pycache__/
 # secrets and OS files
 .env
 .DS_Store
+
+# lecture materials: local only, not allowed in the public repo
+course_materials/
