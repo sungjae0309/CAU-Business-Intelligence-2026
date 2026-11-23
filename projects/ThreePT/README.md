@@ -71,7 +71,7 @@ python src/build_dataset.py          # 5. label, features, split -> data/process
 Only include data and materials that may be shared in this repository. Do not commit credentials or sensitive personal information.
 
 - Source: NYC 311 Service Requests from 2020 to Present (NYC Open Data, dataset id `erm2-nwe9`)
-- Data files are not stored on GitHub. Share `data/processed/requests.parquet` on Google Drive.
+- Data files are not stored on GitHub. The model dataset (`dataset.parquet`) is shared on the team Notion page; the scripts above rebuild every file from the source.
 
 ## Schedule
 
