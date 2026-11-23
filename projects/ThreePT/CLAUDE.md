@@ -23,7 +23,8 @@ Read these first:
 - `src/config.py` – period, complaint types, columns
 - `src/collect.py` – download NYC 311 data month by month (resumes if stopped)
 - `src/clean.py` – merge, clean, write `data/processed/requests.parquet` and `docs/data_summary.md`
-- `docs/` – project plan, requirements, data spec, data summary, proposal slides
+- `src/build_dataset.py` – label, features, time split → `data/processed/dataset.parquet` and `docs/dataset_summary.md`
+- `docs/` – project plan, requirements, data spec, data summary, dataset summary, proposal slides
 - `course_materials/` – lecture slides, guideline slides, transcript, course notes (local only, never commit)
 - `notebooks/` – analysis and modeling
 

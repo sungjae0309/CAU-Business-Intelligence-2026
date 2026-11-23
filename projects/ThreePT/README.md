@@ -25,6 +25,7 @@ src/
   config.py     settings: period, complaint types, columns
   collect.py    download NYC 311 data month by month
   clean.py      merge, clean, and write a summary
+  build_dataset.py  label, features, and time split for modeling
 notebooks/      analysis and modeling notebooks
 docs/           data spec and data summary
 data/raw/       monthly CSV files (not on GitHub)
@@ -55,6 +56,7 @@ python src/collect.py --list-types   # 1. check exact complaint_type names, then
 python src/collect.py --sample 1000  # 2. small test download -> data/raw/sample.csv
 python src/collect.py                # 3. full download, month by month (safe to stop and rerun)
 python src/clean.py                  # 4. clean -> data/processed/requests.parquet + docs/data_summary.md
+python src/build_dataset.py          # 5. label, features, split -> data/processed/dataset.parquet + docs/dataset_summary.md
 ```
 
 ## Deliverables

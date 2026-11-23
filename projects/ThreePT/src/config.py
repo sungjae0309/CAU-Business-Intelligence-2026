@@ -41,6 +41,38 @@ FIELDS = [
 # Rows per request. Socrata allows up to 50,000 per page.
 PAGE_SIZE = 50_000
 
+# ---- Model dataset (src/build_dataset.py) ----
+
+# Date the raw data was downloaded. Requests still open on this date are judged against it.
+DATA_COLLECTED_ON = "2026-11-24"
+
+# Complaint types kept in the model dataset (team decision pending: drop "Noise - Residential"?).
+MODEL_TYPES = [
+    "HEAT/HOT WATER",
+    "Noise - Residential",
+    "Street Condition",
+]
+
+# Long delay = time to close above this quantile of its type, computed on the train period only.
+LONG_DELAY_QUANTILE = 0.9
+
+# Fixed limit in hours per type, e.g. {"HEAT/HOT WATER": 72}. A type listed here ignores the quantile.
+LONG_DELAY_HOURS: dict[str, float] = {}
+
+# Requests closed in the same second as created (mostly Street Condition) are left out.
+DROP_SAME_SECOND = True
+
+# Time split by created_date: start included, end excluded.
+SPLITS = {
+    "train": ("2023-01-01", "2024-01-01"),
+    "valid": ("2024-01-01", "2024-07-01"),
+    "test": ("2024-07-01", "2025-01-01"),
+}
+
+# Repeated reports: same type, within NEARBY_METERS (grid), within RECENT_DAYS.
+NEARBY_METERS = 100
+RECENT_DAYS = 7
+
 ROOT = Path(__file__).resolve().parent.parent
 RAW_DIR = ROOT / "data" / "raw"
 PROCESSED_DIR = ROOT / "data" / "processed"

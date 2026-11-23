@@ -100,9 +100,14 @@ so the staff in charge can look at them first.
 - 2026-11-24: Data collection done. 1,307,259 rows in 24 monthly files.
   After `clean.py`: 1,307,128 rows (131 closed before created removed). Details in `docs/data_summary.md`.
   Noise - Residential: no open requests, median 0.8 h; monthly count rises from about 25k to 45k from 2024-09.
+- 2026-11-24: Model dataset built with `src/build_dataset.py` → `data/processed/dataset.parquet`, 1,298,122 rows.
+  Open requests (2+ years open at collection) labeled as long delay. Removed: 104 "Closed" without closed_date,
+  8,902 closed in the same second. Rows without a location stay; nearby features are empty for them.
+  Train-period top 10% limits: HEAT/HOT WATER 81.5 h · Noise - Residential 3.2 h · Street Condition 186.9 h.
+  Long-delay rate in test (2024 H2): HEAT 15.2% · Noise 28.8% · Street 12.4% (train 10% each).
+  Details in `docs/dataset_summary.md`.
 
 ## Open questions
 
 - Long-delay label: top 10% per type, or the city's time limit?
-- How to handle requests that are still open (no closed_date)?
-- How to handle Street Condition rows without a location?
+  Noise - Residential limit is 3.2 h, so a "long delay" there is a few hours, not days. Keep or drop noise?
